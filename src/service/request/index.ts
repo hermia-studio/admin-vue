@@ -32,7 +32,7 @@ class HWRequest {
     // 添加每个实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例都有的拦截器：请求成功拦截')
+        // console.log('所有实例都有的拦截器：请求成功拦截')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -43,13 +43,13 @@ class HWRequest {
         return config
       },
       (err) => {
-        console.log('每个实例都有的拦截器，请求失败拦截')
+        // console.log('每个实例都有的拦截器，请求失败拦截')
         return err
       }
     )
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('每个实例都有的拦截器,响应成功拦截')
+        // console.log('每个实例都有的拦截器,响应成功拦截')
         // 将loading 移除
         this.loading?.close()
         const data = res.data
@@ -113,7 +113,7 @@ class HWRequest {
   }
 
   // request函数
-  request<T>(config: HWRequestConfig): Promise<T> {
+  request<T>(config: HWRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 对单个请求进行拦截
       if (config.interceptors?.requestInterceptor) {
@@ -143,19 +143,19 @@ class HWRequest {
     })
   }
 
-  get<T>(config: HWRequestConfig): Promise<T> {
+  get<T>(config: HWRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: HWRequestConfig): Promise<T> {
+  post<T>(config: HWRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: HWRequestConfig): Promise<T> {
+  delete<T>(config: HWRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: HWRequestConfig): Promise<T> {
+  patch<T>(config: HWRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
