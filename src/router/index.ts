@@ -5,6 +5,10 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect: '/login'
+    },
+    {
+      path: '/home',
       name: 'home',
       component: () => import('@/views/Home/HomeIndex.vue')
     },
@@ -20,23 +24,5 @@ const router = createRouter({
     }
   ]
 })
-
-// 全局前置守卫
-// router.beforeEach(async (to) => {
-//   // 判断是否需要身份认证
-//   if (to.meta.requireAuth) {
-//     // 如果需要进行身份验证
-//     try {
-//       // await auth()
-//       return true
-//     } catch {
-//       // 没有通过验证则跳转到登录页
-//       router.push('/login')
-//     }
-//   } else {
-//     // 不需要则放行
-//     return true
-//   }
-// })
 
 export default router
