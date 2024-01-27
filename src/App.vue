@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import 'element-plus/theme-chalk/display.css'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="appPage">

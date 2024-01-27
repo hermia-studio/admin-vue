@@ -2,6 +2,6 @@
 import LayoutIndex from '@/LayoutIndex.vue'
 </script>
 <template>
-  <LayoutIndex>首页</LayoutIndex>
+  <LayoutIndex> 客户信息 </LayoutIndex>
 </template>
 <style></style>
